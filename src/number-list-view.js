@@ -20,19 +20,25 @@ export default class NumberListView {
       // content = content + `<li>${i}</li>`
       content += `<li>
         ${i}
-        <button>X</button>
+        <button class='delete-one'>X</button>
       </li>`
     })
 
+    content += `<button class='delete-all'>Clear All</button>`
+
     this.pageSection.innerHTML = content
 
-    const buttons = this.pageSection.querySelectorAll(`button`)
+    const buttons = this.pageSection.querySelectorAll(`.delete-one`)
     for (let i=0; i < buttons.length; i++) {
       let button = buttons[i];
       button.addEventListener(`click`, () => {
         this.removeNumberAtIndex(i)
       })
     }
+
+    this.pageSection.querySelector(`.delete-all`).addEventListener(`click`, () => {
+      this.removeAllNumbers()
+    })
   }
 
   removeNumberAtIndex(index) {
@@ -40,6 +46,14 @@ export default class NumberListView {
       .then(r => r.json())
       .then(data => {
         console.log('deleted at index', index, data)
+      })
+  }
+
+  removeAllNumbers() {
+    fetch(`http://localhost:3000/users/james/numbers`, { method: `DELETE` })
+      .then(r => r.json())
+      .then(data => {
+        console.log('deleted all', data)
       })
   }
 }
