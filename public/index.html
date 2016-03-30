@@ -30,8 +30,10 @@
 </head>
 <body>
 
-  <input type="text" placeholder="Add a Number">
-  <button>Save</button>
+  <div class="number-input">
+    <!-- <input type="text" placeholder="Add a Number">
+    <button>Save</button> -->
+  </div>
 
   <ul class="number-list"></ul>
 
@@ -55,17 +57,8 @@
     const ProductView = require("product-view")
     new ProductView(document.querySelector(".number-product"))
 
-    const reqBody = new FormData()
-    reqBody.append("value", 17)
-
-    console.log(reqBody)
-
-    fetch("http://localhost:3000/users/james/numbers", {
-      method: `POST`,
-      body: reqBody
-    })
-      .then(r => r.json())
-      .then(data => console.log(data))
+    const InputView = require("input-view")
+    new InputView(document.querySelector(".number-input"))
   </script>
 </body>
 </html>
