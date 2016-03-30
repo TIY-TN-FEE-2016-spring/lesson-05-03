@@ -36,6 +36,10 @@ export default class NumberListView {
   }
 
   removeNumberAtIndex(index) {
-    console.log('should remove number at index', index)
+    fetch(`http://localhost:3000/users/james/numbers/${index}`, { method: `DELETE` })
+      .then(r => r.json())
+      .then(data => {
+        console.log('deleted at index', index, data)
+      })
   }
 }
