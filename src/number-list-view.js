@@ -1,14 +1,26 @@
 export default class NumberListView {
   constructor(firstArgument) {
-    const numbers = [2,4,1]
+    this.pageSection = firstArgument
+    this.numbers = ["Loading ..."]
 
+    fetch(`http://localhost:3000/users/james/numbers`).
+      then(response => response.json()).
+      then(data => {
+        this.numbers = data
+        this.drawPageStuff()
+      })
+
+    this.drawPageStuff()
+  }
+
+  drawPageStuff() {
     let content = ``
 
-    numbers.forEach(i => {
+    this.numbers.forEach(i => {
       // content = content + `<li>${i}</li>`
       content += `<li>${i}</li>`
     })
 
-    firstArgument.innerHTML = content
+    this.pageSection.innerHTML = content
   }
 }
