@@ -49,7 +49,8 @@
   <script type="text/javascript">
     const NumberListView = require("number-list-view")
     const numberListNode = document.querySelector(".number-list")
-    new NumberListView(numberListNode)
+
+    const list = new NumberListView(numberListNode)
 
     const SumView = require("sum-view")
     new SumView(document.querySelector(".number-sum"))
@@ -58,7 +59,7 @@
     new ProductView(document.querySelector(".number-product"))
 
     const InputView = require("input-view")
-    new InputView(document.querySelector(".number-input"))
+    new InputView(document.querySelector(".number-input"), list)
   </script>
 </body>
 </html>

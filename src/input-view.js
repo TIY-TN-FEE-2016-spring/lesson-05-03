@@ -1,5 +1,13 @@
 export default class InputView {
-  constructor(section) {
+  constructor(section, listView) {
+    // We need to make sure that we update and re-render the list
+    //   view after adding a new number
+    // The strategy here is that we will pass the list view object
+    //   itself in to the InputView constructor, so that we can
+    //   hold a reference here, and signal that it's time to refresh
+    //   after every successful number save
+    this.correspondingListView = listView
+
     this.section = section
     this.render()
     this.listenForButton()
@@ -25,7 +33,17 @@ export default class InputView {
       body: reqBody
     })
       .then(r => r.json())
-      .then(data => console.log(data))
+      .then(data => {
+        // Now that we know we've saved the data in the server,
+        //   the list view is out of date. But it knows how to
+        //   update itself - we just need to tell it that it's
+        //   time to do so.
+        this.correspondingListView.pleaseRefreshFromTheServerNow()
+
+        // Note: for completion's sake, we should do the same sort
+        //   of thing to update the Sum and Product views. That's
+        //   left as an excercise.
+      })
   }
 
   render() {

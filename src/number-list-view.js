@@ -3,14 +3,24 @@ export default class NumberListView {
     this.pageSection = firstArgument
     this.numbers = ["Loading ..."]
 
+    this.drawPageStuff()
+
+    // Kick off the initial fetch once
+    this.pleaseRefreshFromTheServerNow()
+  }
+
+  // And also have a function that we can call again to refresh
+  //   the data from the server whenever we want
+  pleaseRefreshFromTheServerNow() {
+    // This function encapsulates:
+    //   1) make the fetch request to the server
+    //   2) re-render the page once it returns
     fetch(`http://localhost:3000/users/james/numbers`).
       then(response => response.json()).
       then(data => {
         this.numbers = data
         this.drawPageStuff()
       })
-
-    this.drawPageStuff()
   }
 
   drawPageStuff() {
