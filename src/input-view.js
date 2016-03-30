@@ -14,6 +14,15 @@ export default class InputView {
     //   .then(r => r.json())
     //   .then(data => console.log(data))
     this.render()
+    this.listenForButton()
+  }
+
+  listenForButton() {
+    const button = this.section.querySelector(`button`)
+    button.addEventListener(`click`, () => {
+      const number = this.section.querySelector(`input`).value
+      console.log('should save', number)
+    })
   }
 
   render() {
