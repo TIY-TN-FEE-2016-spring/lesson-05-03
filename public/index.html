@@ -10,10 +10,7 @@
   <input type="text" placeholder="Add a Number">
   <button>Save</button>
 
-  <ul>
-    <li>3</li>
-    <li>4</li>
-  </ul>
+  <ul class="number-list"></ul>
 
   <div>
     <p>Sum is:</p>
@@ -24,6 +21,10 @@
   <script src="/app.js" charset="utf-8"></script>
 
   <script type="text/javascript">
+    const NumberListView = require("number-list-view")
+    const numberListNode = document.querySelector(".number-list")
+
+    new NumberListView(numberListNode)
   </script>
 </body>
 </html>
