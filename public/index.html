@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="/app.css">
   <style type="text/css">
     body { padding: 15px; }
-    
+
     ul { margin: 0; padding: 0; }
 
     li {
@@ -54,6 +54,18 @@
 
     const ProductView = require("product-view")
     new ProductView(document.querySelector(".number-product"))
+
+    const reqBody = new FormData()
+    reqBody.append("value", 17)
+
+    console.log(reqBody)
+
+    fetch("http://localhost:3000/users/james/numbers", {
+      method: `POST`,
+      body: reqBody
+    })
+      .then(r => r.json())
+      .then(data => console.log(data))
   </script>
 </body>
 </html>
