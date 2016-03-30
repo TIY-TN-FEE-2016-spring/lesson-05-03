@@ -12,9 +12,9 @@
 
   <ul class="number-list"></ul>
 
-  <div>
-    <p>Sum is:</p>
-    <h3>7</h3>
+  <div class="number-sum">
+    <!-- <p>Sum is:</p>
+    <h3>7</h3> -->
   </div>
 
   <script src="/vendor.js" charset="utf-8"></script>
@@ -25,6 +25,9 @@
     const numberListNode = document.querySelector(".number-list")
 
     new NumberListView(numberListNode)
+
+    const SumView = require("sum-view")
+    new SumView(document.querySelector(".number-sum"))
   </script>
 </body>
 </html>
